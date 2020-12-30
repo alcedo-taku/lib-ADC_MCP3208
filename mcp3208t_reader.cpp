@@ -4,3 +4,10 @@ Mcp3208t_reader::Mcp3208t_reader(GPIO_TypeDef &nss_port, uint16_t &nss_pin):nss_
 
 }
 
+void Mcp3208t_reader::init(){
+	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_SET);
+}
+
+void Mcp3208t_reader::update(){
+
+}
