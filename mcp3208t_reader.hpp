@@ -22,9 +22,9 @@ private:
 	std::map<ADC_CHANNEL, uint16_t> receive_port;
 	std::array<uint16_t, 8> receive_data;
 	std::array<uint16_t, 8> transmit_data;
+	SPI_HandleTypeDef* hspi;
 	GPIO_TypeDef* nss_port;
 	const uint16_t nss_pin;
-	SPI_HandleTypeDef* hspi;
 public:
 	Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef &nss_port, uint16_t &nss_pin);
 	void init();
