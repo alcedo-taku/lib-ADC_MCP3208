@@ -3,7 +3,7 @@
 #include <array>
 #include "gpio.h"
 #include "spi.h"
-#include <map>
+#include <unordered_map>
 
 	enum class ADC_CHANNEL{
 		CH_0,
@@ -18,8 +18,8 @@
 
 class Mcp3208t_reader{
 private:
-	std::map<ADC_CHANNEL, uint16_t> channel_config;
-	std::map<ADC_CHANNEL, uint16_t> receive_port;
+	std::unordered_map<ADC_CHANNEL, uint16_t> channel_config;
+	std::unordered_map<ADC_CHANNEL, uint16_t> receive_port;
 	std::array<uint16_t, 8> receive_data;
 	std::array<uint16_t, 8> transmit_data;
 	SPI_HandleTypeDef* hspi;
