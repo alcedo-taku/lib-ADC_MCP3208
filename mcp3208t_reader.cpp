@@ -19,5 +19,5 @@ void Mcp3208t_reader::update(ADC_CHANNEL adc_channel, uint32_t timeout){
 }
 
 uint16_t Mcp3208t_reader::get(ADC_CHANNEL adc_channel){
-
+	return receive_port.at(adc_channel);
 }
