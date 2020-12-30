@@ -29,6 +29,6 @@ public:
 	Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef &nss_port, uint16_t &nss_pin);
 	void init();
 	void update(ADC_CHANNEL adc_channel, uint32_t timeout);
-	void get(ADC_CHANNEL adc_channel);
+	uint16_t get(ADC_CHANNEL adc_channel);
 };
 #endif //INC_MCP3208T_READER_HPP_
