@@ -5,7 +5,7 @@
 #include "spi.h"
 #include <unordered_map>
 
-	enum class ADC_CHANNEL{
+	enum class ADC_CHANNEL:uint8_t{
 		CH_0,
 		CH_1,
 		CH_2,
