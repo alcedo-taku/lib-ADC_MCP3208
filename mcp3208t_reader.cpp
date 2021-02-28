@@ -7,10 +7,8 @@ Mcp3208t_reader::Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef &nss_port,
 void Mcp3208t_reader::init(){
 	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_SET);
 	for(uint8_t i = 0; i < 8; i++){
-		channel_config.insert(std::make_pair(static_cast<ADC_CHANNEL>(i), (i+8)<<12));
-		for(uint8_t j = 0;j < 3;j++){
-			receive_port.insert(std::make_pair(static_cast<ADC_CHANNEL>(i),receive_data[i][j]));
-		}
+		channel_config.insert(std::make_pair(static_cast<ADC_CHANNEL>(i), transmit_data[i]));
+			receive_port.insert(std::make_pair(static_cast<ADC_CHANNEL>(i),receive_data[i]));
 	}
 }
 
