@@ -1,6 +1,6 @@
 #include "mcp3208t_reader.hpp"
 
-Mcp3208t_reader::Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef &nss_port, uint16_t &nss_pin):hspi(&hspi),nss_port(&nss_port),nss_pin(nss_pin){
+Mcp3208t_reader::Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef *nss_port, uint16_t nss_pin):hspi(&hspi),nss_port(nss_port),nss_pin(nss_pin){
 
 }
 

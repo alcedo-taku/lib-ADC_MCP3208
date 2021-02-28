@@ -26,7 +26,7 @@ private:
 	GPIO_TypeDef* nss_port;
 	const uint16_t nss_pin;
 public:
-	Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef &nss_port, uint16_t &nss_pin);
+	Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef *nss_port, uint16_t nss_pin);
 	void init();
 	void update(ADC_CHANNEL adc_channel, uint32_t timeout);
 	uint16_t get(ADC_CHANNEL adc_channel);
