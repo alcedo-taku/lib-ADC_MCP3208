@@ -18,8 +18,8 @@
 
 class Mcp3208t_reader{
 private:
-	std::unordered_map<ADC_CHANNEL, uint16_t> channel_config;
-	std::unordered_map<ADC_CHANNEL, uint16_t> receive_port;
+	std::unordered_map<ADC_CHANNEL, std::array<uint8_t,3>> channel_config;
+	std::unordered_map<ADC_CHANNEL, std::array<uint8_t,3>> receive_port;
 	std::array<std::array<uint8_t,3>, 8> receive_data;
 	std::array<std::array<uint8_t,3>, 8> transmit_data;
 	SPI_HandleTypeDef* hspi;
