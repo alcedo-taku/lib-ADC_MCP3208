@@ -18,11 +18,11 @@ void Mcp3208t_reader::init(){
 
 void Mcp3208t_reader::update(ADC_CHANNEL adc_channel, uint32_t timeout){
 	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_RESET);
-	HAL_SPI_TransmitReceive(hspi,(uint8_t*)&(channel_config.at(adc_channel)), (uint8_t*)&(receive_port.at(adc_channel)), sizeof(receive_port.at(adc_channel)), timeout);
+	HAL_SPI_TransmitReceive(hspi,(uint8_t*)&(channel_config[adc_channel]), (uint8_t*)&(receive_port[adc_channel]), sizeof(receive_port[adc_channel]), timeout);
 	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_SET);
 }
 
 uint16_t Mcp3208t_reader::get(ADC_CHANNEL adc_channel){
 
-	return static_cast<uint16_t>(receive_port.at(adc_channel)[1]<<8 | receive_port.at(adc_channel)[2]);
+	return static_cast<uint16_t>(receive_port[adc_channel][1]<<8 | receive_port[adc_channel][2]);
 }
