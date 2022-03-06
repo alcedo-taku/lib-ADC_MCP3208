@@ -2,9 +2,9 @@
 
 /**
  * コンストラクタ
- * @param hspi SPI番号
- * @param nss_port SSピンのPort 
- * @param nss_pin SSピンのPin
+ * @param hspi 使用するSPIのハンドル
+ * @param nss_port SSピンとして設定したGPIOのPort 
+ * @param nss_pin SSピンとして設定したGPIOのPin
  */
 Mcp3208t_reader::Mcp3208t_reader(
 	SPI_HandleTypeDef& hspi,
@@ -23,6 +23,7 @@ Mcp3208t_reader::Mcp3208t_reader(
 void Mcp3208t_reader::init(){
 	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_SET);
 	for(uint8_t i = 0; i < 8; i++){
+		/*データシート TABLE 5-2(p.19), FIGURE 6-1(p.22)を参照*/
 		transmit_data[i][0] = 0b110 | i>>2;
 		transmit_data[i][1] = i << 6;
 		transmit_data[i][2] = 0;
