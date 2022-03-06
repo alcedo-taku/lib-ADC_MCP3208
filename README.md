@@ -1,8 +1,8 @@
-# Mcp3208_reader
+# Mcp3208t_reader
 
-## mcp3208tについて
+## MCP3208について
 
-[mcp3208t](https://akizukidenshi.com/catalog/g/gI-00238/)とは12bitのADC用のicでこのクラスはこのicとspi通信を行いadcされた値を取得するクラスです
+[MCP3208](https://akizukidenshi.com/catalog/g/gI-00238/)とは12bitのADC用のicでこのクラスはこのicとspi通信を行いadcされた値を取得するクラスです
 
 ## CubeMx
 ```yaml
@@ -38,7 +38,7 @@ SPIn
 		CH_7
 	};
 ```
-mcp3208tのチャンネルの指定に使います
+MCP3208のチャンネルの指定に使います
 
 ## コンストラクタ
 
