@@ -1,27 +1,31 @@
 # Mcp3208t_reader
 
-## MCP3208について
+ADCIC MCP3208とspi通信を行い、ADCされた値を取得するライブラリ
 
-[MCP3208](https://akizukidenshi.com/catalog/g/gI-00238/)とは12bitのADC用のicでこのクラスはこのicとspi通信を行いadcされた値を取得するクラスです
+## MCP3208について
+12bitのADCIC。SPI通信により値を取得することができる。  
+[MCP3208](https://akizukidenshi.com/catalog/g/gI-00238/)
 
 ## CubeMx
 ```yaml
-PinOut : SPIn
-            SPIn_NSSに設定されているピンをGPIO_outputに変更
+Pinout
+- SPIn
+- SSピンとして任意のピンを GPIO_output に変更
 SPIn
-    - Mode = Full-Duplex Master
-      Hardware Signal = Disable
+- Mode
+    - Mode              = Full-Duplex Master
+    - Hardware Signal   = Disable
+
+- Parameter setting
+    - Basic parameter
+        - Frame Format  = Motorola
+        - Data Size     = 8bit
+        - First bit     = MSBfirst
     
-    Parameter setting
-        Basic parameter
-            - Frame Format = Motorola
-            - Data Size = 8bit
-            - First bit = MSBfirst
-        
-        Clock parameter
-            - Prescaler = (APB1 Timer Periferal 1 [MHz]/ 1)その下のbaud rateが1000.0KBit/sになるように設定
-            - Clock Polality = Low
-            - clock Phase = 1 edge
+    - Clock parameter
+        - Prescaler         = (APB1 Timer Periferal 1 [MHz]/ 1)その下のbaud rateが1000.0KBit/sになるように設定
+        - Clock Polality    = Low
+        - clock Phase       = 1Edge
 ```
 
 ## サンプルプログラム
