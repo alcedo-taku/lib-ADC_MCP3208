@@ -7,6 +7,7 @@
 
 /**
  * 各Channelを要素に持つenum class
+ * MCP3208のチャンネルの指定に使用
  */
 enum class ADC_CHANNEL:uint8_t{
 	CH_0,

@@ -18,7 +18,7 @@ Mcp3208t_reader::Mcp3208t_reader(
 }
 
 /**
- * 初期化関数
+ * 初期化関数（MCP3208に送るコマンドを作製）
  */
 void Mcp3208t_reader::init(){
 	HAL_GPIO_WritePin(ss_port, ss_pin, GPIO_PIN_SET);
