@@ -28,11 +28,11 @@ private:
 	std::unordered_map<ADC_CHANNEL, std::array<uint8_t,3>> receive_port;   	//!< ICに送る変数(値を取得したいChannelが格納)
 	std::array<std::array<uint8_t,3>, 8> receive_data;						//!< ICから値を受け取る変数
 	std::array<std::array<uint8_t,3>, 8> transmit_data;						//!< ICに送る変数(値を取得したいChannelが格納)
-	SPI_HandleTypeDef* hspi;												//!< SPI番号
-	GPIO_TypeDef* nss_port;													//!< SSピンのPort
-	const uint16_t nss_pin;													//!< SSピンのPin
+	SPI_HandleTypeDef* hspi;												//!< 使用するSPIのハンドル
+	GPIO_TypeDef* ss_port;													//!< SSピンとして設定したGPIOのPort
+	const uint16_t ss_pin;													//!< SSピンとして設定したGPIOのPin
 public:
-	Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef *nss_port, uint16_t nss_pin);
+	Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef *ss_port, uint16_t ss_pin);
 	void init();
 	void update(ADC_CHANNEL adc_channel, uint32_t timeout);
 	uint16_t get(ADC_CHANNEL adc_channel);

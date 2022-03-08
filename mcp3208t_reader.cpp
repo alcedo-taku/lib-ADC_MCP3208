@@ -3,17 +3,17 @@
 /**
  * コンストラクタ
  * @param hspi 使用するSPIのハンドル
- * @param nss_port SSピンとして設定したGPIOのPort 
- * @param nss_pin SSピンとして設定したGPIOのPin
+ * @param ss_port SSピンとして設定したGPIOのPort
+ * @param ss_pin SSピンとして設定したGPIOのPin
  */
 Mcp3208t_reader::Mcp3208t_reader(
 	SPI_HandleTypeDef& hspi,
-	GPIO_TypeDef *nss_port,
-	uint16_t nss_pin
+	GPIO_TypeDef *ss_port,
+	uint16_t ss_pin
 ):
 	hspi(&hspi),
-	nss_port(nss_port),
-	nss_pin(nss_pin)
+	ss_port(ss_port),
+	ss_pin(ss_pin)
 {
 }
 
@@ -21,7 +21,7 @@ Mcp3208t_reader::Mcp3208t_reader(
  * 初期化関数
  */
 void Mcp3208t_reader::init(){
-	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ss_port, ss_pin, GPIO_PIN_SET);
 	for(uint8_t i = 0; i < 8; i++){
 		/*データシート TABLE 5-2(p.19), FIGURE 6-1(p.22)を参照*/
 		transmit_data[i][0] = 0b110 | i>>2;
@@ -38,9 +38,9 @@ void Mcp3208t_reader::init(){
  * @param timeout SPI通信のtimeout
  */
 void Mcp3208t_reader::update(ADC_CHANNEL adc_channel, uint32_t timeout){
-	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(ss_port, ss_pin, GPIO_PIN_RESET);
 	HAL_SPI_TransmitReceive(hspi,(uint8_t*)&(channel_config[adc_channel]), (uint8_t*)&(receive_port[adc_channel]), sizeof(receive_port[adc_channel]), timeout);
-	HAL_GPIO_WritePin(nss_port, nss_pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(ss_port, ss_pin, GPIO_PIN_SET);
 }
 
 /**
