@@ -24,11 +24,8 @@ void Mcp3208t_reader::init(){
 	HAL_GPIO_WritePin(ss_port, ss_pin, GPIO_PIN_SET);
 	for(uint8_t i = 0; i < 8; i++){
 		/*データシート TABLE 5-2(p.19), FIGURE 6-1(p.22)を参照*/
-		transmit_data[i][0] = 0b110 | i>>2;
-		transmit_data[i][1] = i << 6;
-		transmit_data[i][2] = 0;
-		channel_config.insert(std::make_pair(static_cast<ADC_CHANNEL>(i), transmit_data[i]));
-		receive_port.insert(std::make_pair(static_cast<ADC_CHANNEL>(i),receive_data[i]));
+		std::array<uint8_t,3> transmit_data = { (0b110 | i>>2), (i << 6), 0 };
+		channel_config.insert(std::make_pair(static_cast<ADC_CHANNEL>(i), transmit_data));
 	}
 }
 

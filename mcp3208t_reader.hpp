@@ -27,8 +27,6 @@ class Mcp3208t_reader{
 private:
 	std::unordered_map<ADC_CHANNEL, std::array<uint8_t,3>> channel_config;	//!< ICから値を受け取る変数
 	std::unordered_map<ADC_CHANNEL, std::array<uint8_t,3>> receive_port;   	//!< ICに送る変数(値を取得したいChannelが格納)
-	std::array<std::array<uint8_t,3>, 8> receive_data;						//!< ICから値を受け取る変数
-	std::array<std::array<uint8_t,3>, 8> transmit_data;						//!< ICに送る変数(値を取得したいChannelが格納)
 	SPI_HandleTypeDef* hspi;												//!< 使用するSPIのハンドル
 	GPIO_TypeDef* ss_port;													//!< SSピンとして設定したGPIOのPort
 	const uint16_t ss_pin;													//!< SSピンとして設定したGPIOのPin
