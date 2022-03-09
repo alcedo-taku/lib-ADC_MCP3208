@@ -1,4 +1,4 @@
-# Mcp3208t_reader
+# MCP3208_reader
 
 ADCIC MCP3208とspi通信を行い、ADCされた値を取得するライブラリ
 
@@ -8,10 +8,10 @@ ADCIC MCP3208とspi通信を行い、ADCされた値を取得するライブラ�
 
 ## CubeMx
 ```yaml
-Pinout
+Pinout:
 - SPIn
 - SSピンとして任意のピンを GPIO_output に変更
-SPIn
+SPIn:
 - Mode
     - Mode              = Full-Duplex Master
     - Hardware Signal   = Disable
@@ -32,16 +32,16 @@ SPIn
 
 ### コンストラクタ
 ```c++
-Mcp3208t_reader mcp3208t_reader(hspi1,GPIOA,GPIO_PIN_4);
+MCP3208_reader mcp3208_reader(hspi1,GPIOA,GPIO_PIN_4);
 ```
 
 ### 初期化
 ```c++
-mcp3208t_reader.init();
+mcp3208_reader.init();
 ```
 
 ### 更新と取得
 ```c++
-mcp3208t_reader.update(ADC_CHANNEL::CH_0, 0xF);
-range_sensor_value[0] = mcp3208t_reader.get(ADC_CHANNEL::CH_0);
+mcp3208_reader.update(ADC_CHANNEL::CH_0, 0xF);
+range_sensor_value[0] = mcp3208_reader.get(ADC_CHANNEL::CH_0);
 ```

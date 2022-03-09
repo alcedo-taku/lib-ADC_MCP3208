@@ -23,7 +23,7 @@ enum class ADC_CHANNEL:uint8_t{
 /**
  * ADコンバータ MCP3208 から値を読み取るクラス
  */
-class Mcp3208t_reader{
+class MCP3208_reader{
 private:
 	std::unordered_map<ADC_CHANNEL, std::array<uint8_t,3>> channel_config;	//!< ICから値を受け取る変数
 	std::unordered_map<ADC_CHANNEL, std::array<uint8_t,3>> receive_port;   	//!< ICに送る変数(値を取得したいChannelが格納)
@@ -31,7 +31,7 @@ private:
 	GPIO_TypeDef* ss_port;													//!< SSピンとして設定したGPIOのPort
 	const uint16_t ss_pin;													//!< SSピンとして設定したGPIOのPin
 public:
-	Mcp3208t_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef *ss_port, uint16_t ss_pin);
+	MCP3208_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef *ss_port, uint16_t ss_pin);
 	void init();
 	void update(ADC_CHANNEL adc_channel, uint32_t timeout);
 	uint16_t get(ADC_CHANNEL adc_channel);
