@@ -41,10 +41,32 @@ void MCP3208_reader::update(ADC_CHANNEL adc_channel, uint32_t timeout){
 }
 
 /**
+ * ADCICと通信し、すべてのChannelの値を更新する関数
+ * @param timeout SPI通信のtimeout
+ */
+void MCP3208_reader::update(uint32_t timeout){
+	for(uint8_t i = 0; i < 8; i++){
+		update( static_cast<ADC_CHANNEL>(i), timeout );
+	}
+}
+
+/**
  * 指定したのChannelの値を取得する関数
  * @param adc_channel 取得したいChannel
  * @return uint16_t 指定したのChannelの値
  */
 uint16_t MCP3208_reader::get(ADC_CHANNEL adc_channel){
 	return static_cast<uint16_t>((receive_port.at(adc_channel)[1]<<8 | receive_port.at(adc_channel)[2])) <<3;
+}
+
+/**
+ * すべてのChannelの値(unordered_map)を取得する関数
+ * @return std::array<uint16_t,8> すべてのChannelの値を含む配列
+ */
+std::array<uint16_t,8> MCP3208_reader::get(){
+	std::array<uint16_t,8> receive_data;
+	for(uint8_t i = 0; i < 8; i++){
+		receive_data[i] = get( static_cast<ADC_CHANNEL>(i) );
+	}
+	return receive_data;
 }

@@ -34,7 +34,9 @@ public:
 	MCP3208_reader(SPI_HandleTypeDef& hspi,GPIO_TypeDef *ss_port, uint16_t ss_pin);
 	void init();
 	void update(ADC_CHANNEL adc_channel, uint32_t timeout);
+	void update(uint32_t timeout);
 	uint16_t get(ADC_CHANNEL adc_channel);
+	std::array<uint16_t,8> get();
 };
 
 #endif //INC_MCP3208T_READER_HPP_
