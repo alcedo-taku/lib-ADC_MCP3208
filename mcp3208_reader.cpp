@@ -35,7 +35,7 @@ void MCP3208_reader::init(){
  */
 void MCP3208_reader::update(ADC_CHANNEL adc_channel, uint32_t timeout){
 	HAL_GPIO_WritePin(ss_port, ss_pin, GPIO_PIN_RESET);
-	HAL_SPI_TransmitReceive(hspi,(uint8_t*)&(transmit_data[static_cast<int>(adc_channel)]), (uint8_t*)&(receive_data[static_cast<int>(adc_channel)]), sizeof(receive_data[static_cast<int>(adc_channel)]), timeout);
+	HAL_SPI_TransmitReceive(hspi,(uint8_t*)&(transmit_data[(uint8_t)adc_channel]), (uint8_t*)&(receive_data[(uint8_t)adc_channel]), sizeof(receive_data[(uint8_t)adc_channel]), timeout);
 	HAL_GPIO_WritePin(ss_port, ss_pin, GPIO_PIN_SET);
 }
 
@@ -45,7 +45,7 @@ void MCP3208_reader::update(ADC_CHANNEL adc_channel, uint32_t timeout){
  */
 void MCP3208_reader::update(uint32_t timeout){
 	for(uint8_t i = 0; i < 8; i++){
-		update( static_cast<ADC_CHANNEL>(i), timeout );
+		update( (ADC_CHANNEL)i, timeout );
 	}
 }
 
@@ -55,7 +55,7 @@ void MCP3208_reader::update(uint32_t timeout){
  * @return uint16_t 指定したのChannelの値
  */
 uint16_t MCP3208_reader::get(ADC_CHANNEL adc_channel){
-	return static_cast<uint16_t>((receive_data[static_cast<uint8_t>(adc_channel)][1]<<8 | receive_data[static_cast<uint8_t>(adc_channel)][2])) <<3;
+	return (uint16_t)(receive_data[(uint8_t)adc_channel][1]<<8 | receive_data[(uint8_t)adc_channel][2]) <<3;
 }
 
 /**
@@ -65,7 +65,7 @@ uint16_t MCP3208_reader::get(ADC_CHANNEL adc_channel){
 std::array<uint16_t,8> MCP3208_reader::get(){
 	std::array<uint16_t,8> receive_data;
 	for(uint8_t i = 0; i < 8; i++){
-		receive_data[i] = get( static_cast<ADC_CHANNEL>(i) );
+		receive_data[i] = get( (ADC_CHANNEL)i );
 	}
 	return receive_data;
 }
