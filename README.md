@@ -1,4 +1,4 @@
-# MCP3208_reader
+# MCP3208
 
 ADCIC MCP3208とspi通信を行い、ADCされた値を取得するライブラリ
 
@@ -32,7 +32,7 @@ SPIn:
 
 ### コンストラクタ
 ```c++
-MCP3208_reader mcp3208_reader(hspi1,GPIOA,GPIO_PIN_4);
+mcp3208::MCP3208 mcp3208_reader(hspi1,GPIOA,GPIO_PIN_4);
 ```
 
 ### 初期化
@@ -42,6 +42,6 @@ mcp3208_reader.init();
 
 ### 更新と取得
 ```c++
-mcp3208_reader.update(ADC_CHANNEL::CH_0, 0xF);
-range_sensor_value[0] = mcp3208_reader.get(ADC_CHANNEL::CH_0);
+mcp3208_reader.update(mcp3208::ADC_CHANNEL::CH_0, 0xF);
+range_sensor_value[0] = mcp3208_reader.get(mcp3208::ADC_CHANNEL::CH_0);
 ```
