@@ -43,8 +43,8 @@ mcp3208_reader.init();
 ### 更新と取得
 ```c++
 uint16_t adc_value
-mcp3208_reader.update(mcp3208::ADC_CHANNEL::CH_0, 0xF);
-adc_value = mcp3208_reader.get(mcp3208::ADC_CHANNEL::CH_0);
+mcp3208_reader.update(mcp3208::Channel::CH_0, 0xF);
+adc_value = mcp3208_reader.get(mcp3208::Channel::CH_0);
 
 std::array<uint16_t, 8> adc_value_array;
 mcp3208_reader.update(0xF);
